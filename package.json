@@ -1,0 +1,54 @@
+{
+  "name": "identif",
+  "version": "0.0.1",
+  "description": "Helper functions to verify one's identity via personal channels(SMS, Phone, E-Mail and more!)",
+  "license": "MIT",
+  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
+  "contributors": [],
+  "homepage": "https://github.com/posquit0/node-identif#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/posquit0/node-identif.git"
+  },
+  "bugs": {
+    "url": "https://github.com/posquit0/node-identif/issues"
+  },
+  "keywords": [
+    "identification",
+    "identity",
+    "identify",
+    "verification",
+    "sms",
+    "email",
+    "phone",
+    "sms-verification",
+    "email-verification",
+    "2fa",
+    "authentication"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "index.js",
+    "lib/"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "istanbul cover _mocha --report lcovonly -- test",
+    "lint": "eslint ./"
+  },
+  "dependencies": {
+    "debug": "^2.6.4",
+    "ioredis": "^2.5.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.0",
+    "eslint": "^3.19.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
+}
