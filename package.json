@@ -1,6 +1,6 @@
 {
   "name": "identif",
-  "version": "0.0.1",
+  "version": "0.4.1",
   "description": "Helper functions to verify one's identity via personal channels(SMS, Phone, E-Mail and more!)",
   "license": "MIT",
   "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
