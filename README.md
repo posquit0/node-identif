@@ -1,10 +1,10 @@
-<h1 align="center">
+<div align="center">
   <a href="https://github.com/posquit0/node-identif" title="Identif.js">
-    <img alt="Identif.js" src="https://avatars3.githubusercontent.com/u/11437969" width="180px" height="180px" />
+    <img alt="Identif.js" src="http://www.discoveringidentity.com/resources/WindowsLiveWriter_IdentityTrend9IdentityAnalytics_A52A_image3.png" width="240px" />
   </a>
   <br />
-  Identif
-</h1>
+  <h1>Identif</h1>
+</div>
 
 <p align="center">
   A Helper to verify one's identity via personal channels
@@ -36,18 +36,60 @@
 
 <br />
 
-**Identif**
+**Identif** is an abstract helper class to easily implement the identity verification logic via personal channels like SMS, Phone, E-Mail, and more.
+
+- It was written for use on [**CARPLAT**](https://carplat.co.kr) which is the platform service for the car rental.
 
 
 ## Installation
 
 ```bash
-$ npm install identif
+# NPM
+$ npm install --save identif
+# Yarn
+$ yarn add identif
 ```
+
+### Dependencies
+
+- [**Redis**](https://redis.io): if you use `RedisStore`, the connection to redis server is required.
 
 
 ## Usage
 
+```node
+const { Identif, RedisStore } = require('identif');
+
+// Create an instance of Identif with RedisStore
+const identif = new Identif({
+  store: new RedisStore({
+    redis: { host: 'my.redis.com', port: 6379 },
+    ttl: 3 * 60
+  })
+});
+
+// Request the verification
+const { requestId, code, createdAt } = await identif.request();
+/*
+Output
+{
+  requestId: 'e89c3600-6ac7-469e-8d7e-e6e7847b346d',
+  code: '1274',
+  createdAt: '2017-04-23T14:47:24.173Z'
+}
+*/
+
+// Respond to the client including `requestId`, `createdAt`
+// Send `code` via a personal secure channel like SMS, E-Mail
+
+// Verify the request
+const data = await identif.verify(requestId, code);
+if (!data) {
+  // Failed to verify one's identity
+} else {
+  // Verifed one's identity
+}
+```
 
 ## Contact
 
@@ -56,4 +98,4 @@ If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc
 
 ## License
 
-- [MIT](https://github.com/posquit0/node-identif/blob/master/LICENSE)
+[MIT](https://github.com/posquit0/node-identif/blob/master/LICENSE) © [Byungjin Park](http://www.posquit0.com)
