@@ -6,6 +6,9 @@ machine:
   timezone:
     Asia/Seoul
 
+  services:
+    - redis
+
   # Add some environment variables
   environment:
     YARN_VERSION: 0.19.1
