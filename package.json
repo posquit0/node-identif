@@ -46,6 +46,9 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "co-mocha": "^1.2.0",
     "coveralls": "^2.13.0",
     "eslint": "^3.19.0",
     "istanbul": "^0.4.5",
