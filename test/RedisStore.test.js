@@ -9,7 +9,7 @@ describe('RedisStore', function () {
   let redisStore;
 
   beforeEach(function () {
-    redisStore = new RedisStore();
+    redisStore = new RedisStore({ ttl: null });
   });
 
   describe('constructor()', function () {
@@ -21,7 +21,7 @@ describe('RedisStore', function () {
 
   describe('get(key)', function () {
     it('should return a Promise', function () {
-      expect(redisStore.get()).to.be.instanceof(Promise);
+      expect(redisStore.get()).to.be.fulfilled;
     });
 
     it('should return null when undefined key is given', function* () {
@@ -32,16 +32,41 @@ describe('RedisStore', function () {
       }
     });
 
-    it('should return expected value when existing key is given');
+    it('should return expected value when existing key is given', function* () {
+      for (let i = 0; i < 10; i++) {
+        const randomKey = '' + Math.random();
+        yield redisStore.set(randomKey, i);
+        expect(yield redisStore.get(randomKey)).to.equal(i);
+      }
+    });
+
+    it('should expire the value after ttl', function* () {
+      this.timeout(10000);
+      this.slow(7000);
+
+      redisStore.options.ttl = 1;
+      for (let i = 0; i < 3; i++) {
+        const randomKey = '' + Math.random();
+        yield redisStore.set(randomKey, i);
+        const till = new Date(new Date().getTime() + 1010);
+        while (till > new Date()) {}
+        expect(yield redisStore.get(randomKey)).to.equal(null);
+      }
+    });
   });
 
   describe('set(key, data)', function () {
     it('should return a Promise', function () {
-      expect(redisStore.set()).to.be.instanceof(Promise);
+      expect(redisStore.set()).to.be.fulfilled;
     });
 
-    it('should return null when undefined key is given');
-
-    it('should return expected value when existing key is given');
+    it('should return always null', function* () {
+      expect(yield redisStore.set()).to.be.null;
+      for (let i = 0; i < 10; i++) {
+        const randomKey = '' + Math.random();
+        const data = yield redisStore.set(randomKey, Math.random());
+        expect(data).to.be.null;
+      }
+    });
   });
 });

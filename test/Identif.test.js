@@ -47,13 +47,13 @@ describe('Identif(RedisStore)', function () {
 
   describe('request(extra)', function () {
     it('should return a Promise', function () {
-      expect(identif.request()).to.be.instanceof(Promise);
+      expect(identif.request()).to.be.fulfilled;
     });
   });
 
   describe('verify(requestId, code)', function () {
     it('should return a Promise', function () {
-      expect(identif.verify()).to.be.instanceof(Promise);
+      expect(identif.verify()).to.be.fulfilled;
     });
   });
 });
