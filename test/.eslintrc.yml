@@ -2,4 +2,4 @@ env:
   mocha: true
 
 rules:
-  no-empty: allow
+  no-empty: off
