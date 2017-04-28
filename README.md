@@ -98,22 +98,22 @@ if (!data) {
 
 #### Methods
 
-* request([extra])
-* verify(requestId, code)
+* `request([extra])`
+* `verify(requestId, code)`
 
 ### MemoryStore()
 
 #### Methods
 
-* get(key)
-* set(key, data)
+* `get(key)`
+* `set(key, data)`
 
 ### RedisStore([options])
 
 #### Methods
 
-* get(key)
-* set(key, data)
+* `get(key)`
+* `set(key, data)`
 
 
 ## Contact
