@@ -116,6 +116,15 @@ if (!data) {
 * `set(key, data)`
 
 
+## Contributing
+
+[Identif](https://github.com/posquit0/node-identif) follows the [**Contributor Covenant**](http://contributor-covenant.org/version/1/4/) Code of Conduct.
+
+#### Bug Reports & Feature Requests
+
+Please use the [issue tracker](https://github.com/posquit0/node-identif/issues) to report any bugs or ask feature requests.
+
+
 ## Contact
 
 If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc://irc.freenode.net/posquit0) and ask away. Click [here](https://kiwiirc.com/client/irc.freenode.net/posquit0) to connect.
