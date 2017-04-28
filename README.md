@@ -118,7 +118,7 @@ if (!data) {
 
 ## Contributing
 
-[Identif](https://github.com/posquit0/node-identif) follows the [**Contributor Covenant**](http://contributor-covenant.org/version/1/4/) Code of Conduct.
+This project follows the [**Contributor Covenant**](http://contributor-covenant.org/version/1/4/) Code of Conduct.
 
 #### Bug Reports & Feature Requests
 
