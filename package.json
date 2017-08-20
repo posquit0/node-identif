@@ -41,17 +41,17 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "debug": "^2.6.4",
-    "ioredis": "^2.5.0",
-    "uuid": "^3.0.1"
+    "debug": "^3.0.0",
+    "ioredis": "^3.1.4",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
+    "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
     "co-mocha": "^1.2.0",
-    "coveralls": "^2.13.0",
-    "eslint": "^3.19.0",
+    "coveralls": "^2.13.1",
+    "eslint": "^4.5.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "mocha": "^3.5.0"
   }
 }
