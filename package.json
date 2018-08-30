@@ -1,6 +1,6 @@
 {
   "name": "identif",
-  "version": "0.4.26",
+  "version": "0.4.27",
   "description": "Helper functions to verify one's identity via personal channels(SMS, Phone, E-Mail and more!)",
   "license": "MIT",
   "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
@@ -46,13 +46,13 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
+    "chai": "^4.1.1",
+    "chai-as-promised": "^7.1.1",
     "co-mocha": "^1.2.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-kasa": "^0.1.2",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "mocha": "^4.0.1"
   }
 }
