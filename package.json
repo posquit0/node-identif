@@ -3,9 +3,13 @@
   "version": "0.4.27",
   "description": "Helper functions to verify one's identity via personal channels(SMS, Phone, E-Mail and more!)",
   "license": "MIT",
-  "author": "Claud D. Park <posquit0.bj@gmail.com> (http://www.posquit0.com)",
+  "author": {
+    "name": "Byungjin Park",
+    "email": "posquit0.bj@gmail.com",
+    "url": "http://www.posquit0.com"
+  },
   "contributors": [],
-  "homepage": "https://github.com/posquit0/node-identif#readme",
+  "homepage": "https://github.com/posquit0/node-identif",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/posquit0/node-identif.git"
@@ -24,6 +28,7 @@
     "sms-verification",
     "email-verification",
     "2fa",
+    "mfa",
     "authentication"
   ],
   "engines": {
@@ -35,10 +40,12 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "mocha test",
+    "test": "NODE_ENV=test mocha test",
     "test:watch": "npm test -- --watch",
     "test:coverage": "istanbul cover _mocha --report lcovonly -- test",
-    "lint": "eslint ./"
+    "lint": "eslint lib test",
+    "lint:lib": "eslint lib",
+    "lint:test": "eslint test"
   },
   "dependencies": {
     "debug": "^3.1.0",
