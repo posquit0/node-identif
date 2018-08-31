@@ -1,0 +1,33 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      # Primary container
+      - image: circleci/node:8.11.3
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: yarn && yarn add -D jest-junit
+      - save_cache:
+          key: dependencies-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Lint and Test
+          command: |
+            mkdir -p ~/reports
+            yarn lint --format junit --output-file ~/reports/eslint.xml
+            yarn test:coverage --ci --coverageDirectory ~/reports --reporters jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: "~/reports/test-results.xml"
+      - run:
+          name: Upload Test Coverage to Coveralls
+          command: yarn run coveralls < ~/reports/lcov.info
+      - store_test_results:
+          path: ~/reports
+      - store_artifacts:
+          path: ~/reports
