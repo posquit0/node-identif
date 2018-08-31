@@ -27,7 +27,7 @@ jobs:
             JEST_JUNIT_OUTPUT: "~/reports/test-results.xml"
       - run:
           name: Upload Test Coverage to Coveralls
-          command: yarn run coveralls < ~/reports/lcov.info
+          command: cat ~/reports/lcov.info | yarn run coveralls
       - store_test_results:
           path: ~/reports
       - store_artifacts:
