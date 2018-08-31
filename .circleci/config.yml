@@ -11,7 +11,7 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
-          command: yarn && yarn add -D jest-junit
+          command: yarn
       - save_cache:
           key: dependencies-{{ checksum "package.json" }}
           paths:
