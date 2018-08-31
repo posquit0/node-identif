@@ -32,7 +32,7 @@
     "authentication"
   ],
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "files": [
     "index.js",
@@ -40,26 +40,22 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha test",
+    "test": "NODE_ENV=test jest --verbose",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "istanbul cover _mocha --report lcovonly -- test",
+    "test:coverage": "npm test -- --coverage",
     "lint": "eslint lib test",
     "lint:lib": "eslint lib",
     "lint:test": "eslint test"
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "ioredis": "^2.5.0",
+    "ioredis": "^4.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "chai": "^4.1.1",
-    "chai-as-promised": "^7.1.1",
-    "co-mocha": "^1.2.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-kasa": "^0.1.2",
-    "istanbul": "^0.4.5",
-    "mocha": "^4.0.1"
+    "jest": "^23.5.0"
   }
 }

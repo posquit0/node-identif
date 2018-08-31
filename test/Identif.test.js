@@ -1,59 +1,63 @@
 'use strict';
 
-const { expect } = require('chai');
 const { Identif, MemoryStore, RedisStore } = require('../');
 
 
 describe('Identif(MemoryStore)', function () {
   let identif;
 
-  beforeEach(function () {
+  beforeEach(() => {
     identif = new Identif();
   });
 
-  describe('constructor()', function () {
-    it('should create an instance of Identif with MemoryStore', function () {
-      expect(identif).to.be.an.instanceof(Identif);
-      expect(identif.store).to.be.an.instanceof(MemoryStore);
+  describe('constructor()', () => {
+    it('should create an instance of Identif with MemoryStore', () => {
+      expect(identif).toBeInstanceOf(Identif);
+      expect(identif.store).toBeInstanceOf(MemoryStore);
     });
   });
 
-  describe('request(extra)', function () {
-    it('should return a Promise', function () {
-      expect(identif.request()).to.be.instanceof(Promise);
+  describe('request(extra)', () => {
+    it('should return a Promise', () => {
+      expect(identif.request()).toBeInstanceOf(Promise);
     });
   });
 
-  describe('verify(requestId, code)', function () {
-    it('should return a Promise', function () {
-      expect(identif.verify()).to.be.instanceof(Promise);
+  describe('verify(requestId, code)', () => {
+    it('should return a Promise', () => {
+      expect(identif.verify()).toBeInstanceOf(Promise);
     });
   });
 });
 
-describe('Identif(RedisStore)', function () {
+describe('Identif(RedisStore)', () => {
   let identif;
 
-  beforeEach(function () {
+  beforeEach(() => {
     identif = new Identif({ store: new RedisStore() });
   });
 
-  describe('constructor()', function () {
-    it('should create an instance of Identif with RedisStore', function () {
-      expect(identif).to.be.an.instanceof(Identif);
-      expect(identif.store).to.be.an.instanceof(RedisStore);
+  afterEach(async () => {
+    const store = identif.store;
+    await store.store.quit();
+  });
+
+  describe('constructor()', () => {
+    it('should create an instance of Identif with RedisStore', () => {
+      expect(identif).toBeInstanceOf(Identif);
+      expect(identif.store).toBeInstanceOf(RedisStore);
     });
   });
 
-  describe('request(extra)', function () {
-    it('should return a Promise', function () {
-      expect(identif.request()).to.be.fulfilled;
+  describe('request(extra)', () => {
+    it('should return a Promise', () => {
+      expect(identif.request()).toBeInstanceOf(Promise);
     });
   });
 
-  describe('verify(requestId, code)', function () {
-    it('should return a Promise', function () {
-      expect(identif.verify()).to.be.fulfilled;
+  describe('verify(requestId, code)', () => {
+    it('should return a Promise', () => {
+      expect(identif.verify()).toBeInstanceOf(Promise);
     });
   });
 });

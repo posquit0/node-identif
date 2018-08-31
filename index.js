@@ -1,8 +1,8 @@
 'use strict';
 
-const Identif = require('./lib/Identif');
-const RedisStore = require('./lib/RedisStore');
-const MemoryStore = require('./lib/MemoryStore');
+const Identif = require('./lib/identif');
+const RedisStore = require('./lib/stores/redis');
+const MemoryStore = require('./lib/stores/memory');
 
 
 module.exports = { Identif, RedisStore, MemoryStore };

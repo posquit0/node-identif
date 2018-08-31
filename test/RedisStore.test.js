@@ -1,71 +1,70 @@
 'use strict';
 
-const { expect } = require('chai');
 const Redis = require('ioredis');
 const { RedisStore } = require('../');
 
 
-describe('RedisStore', function () {
+describe('RedisStore', () => {
   let redisStore;
 
-  beforeEach(function () {
+  beforeEach(() => {
     redisStore = new RedisStore({ ttl: null });
   });
 
-  describe('constructor()', function () {
-    it('should create an instance of RedisStore which connects to redis server', function () {
-      expect(redisStore).to.be.an.instanceof(RedisStore);
-      expect(redisStore.store).to.be.an.instanceof(Redis);
+  afterEach(async () => {
+    await redisStore.store.quit();
+  });
+
+  describe('constructor()', () => {
+    it('should create an instance of RedisStore which connects to redis server', () => {
+      expect(redisStore).toBeInstanceOf(RedisStore);
+      expect(redisStore.store).toBeInstanceOf(Redis);
     });
   });
 
-  describe('get(key)', function () {
-    it('should return a Promise', function () {
-      expect(redisStore.get()).to.be.fulfilled;
+  describe('get(key)', () => {
+    it('should return a Promise', () => {
+      expect(redisStore.get()).toBeInstanceOf(Promise);
     });
 
-    it('should return null when undefined key is given', function* () {
+    it('should return null when undefined key is given', async () => {
       for (let i = 0; i < 10; i++) {
         const randomKey = '' + Math.random();
-        const data = yield redisStore.get(randomKey);
-        expect(data).to.be.null;
+        const data = await redisStore.get(randomKey);
+        expect(data).toBeNull();
       }
     });
 
-    it('should return expected value when existing key is given', function* () {
+    it('should return expected value when existing key is given', async () => {
       for (let i = 0; i < 10; i++) {
         const randomKey = '' + Math.random();
-        yield redisStore.set(randomKey, i);
-        expect(yield redisStore.get(randomKey)).to.equal(i);
+        await redisStore.set(randomKey, i);
+        expect(await redisStore.get(randomKey)).toEqual(i);
       }
     });
 
-    it('should expire the value after ttl', function* () {
-      this.timeout(10000);
-      this.slow(7000);
-
-      redisStore.options.ttl = 1;
+    it('should expire the value after ttl', async () => {
       for (let i = 0; i < 3; i++) {
         const randomKey = '' + Math.random();
-        yield redisStore.set(randomKey, i);
+        await redisStore.set(randomKey, i, 1);
         const till = new Date(new Date().getTime() + 1010);
         while (till > new Date()) {}
-        expect(yield redisStore.get(randomKey)).to.equal(null);
+        expect(await redisStore.get(randomKey)).toEqual(null);
       }
     });
   });
 
-  describe('set(key, data)', function () {
-    it('should return a Promise', function () {
-      expect(redisStore.set()).to.be.fulfilled;
+  describe('set(key, data)', () => {
+    it('should return a Promise', () => {
+      expect(redisStore.set()).toBeInstanceOf(Promise);
     });
 
-    it('should return always null', function* () {
-      expect(yield redisStore.set()).to.be.null;
+    it('should return always null', async () => {
+      expect(await redisStore.set()).toBeNull();
       for (let i = 0; i < 10; i++) {
         const randomKey = '' + Math.random();
-        const data = yield redisStore.set(randomKey, Math.random());
-        expect(data).to.be.null;
+        const data = await redisStore.set(randomKey, Math.random());
+        expect(data).toBeNull();
       }
     });
   });

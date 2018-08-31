@@ -1,47 +1,46 @@
 'use strict';
 
-const { expect } = require('chai');
 const { MemoryStore } = require('../');
 
 
-describe('MemoryStore', function () {
+describe('MemoryStore', () => {
   let memoryStore;
 
-  beforeEach(function () {
+  beforeEach(() => {
     memoryStore = new MemoryStore();
   });
 
-  describe('constructor()', function () {
-    it('should create an instance of MemoryStore which uses Map data type', function () {
-      expect(memoryStore).to.be.an.instanceof(MemoryStore);
-      expect(memoryStore.store).to.be.an.instanceof(Map);
-      expect(memoryStore.store.size).to.equal(0);
+  describe('constructor()', () => {
+    it('should create an instance of MemoryStore which uses Map data type', () => {
+      expect(memoryStore).toBeInstanceOf(MemoryStore);
+      expect(memoryStore.store).toBeInstanceOf(Map);
+      expect(memoryStore.store.size).toEqual(0);
     });
   });
 
-  describe('get(key)', function () {
-    it('should return a Promise', function () {
-      expect(memoryStore.get()).to.be.instanceof(Promise);
+  describe('get(key)', () => {
+    it('should return a Promise', () => {
+      expect(memoryStore.get()).toBeInstanceOf(Promise);
     });
 
-    it('should return null when undefined key is given', function* () {
+    it('should return null when undefined key is given', async () => {
       for (let i = 0; i < 10; i++) {
         const randomKey = '' + Math.random();
-        const data = yield memoryStore.get(randomKey);
-        expect(data).to.be.null;
+        const data = await memoryStore.get(randomKey);
+        expect(data).toBeNull();
       }
     });
 
-    it('should return expected value when existing key is given');
+    it.skip('should return expected value when existing key is given', () => {});
   });
 
-  describe('set(key, data)', function () {
-    it('should return a Promise', function () {
-      expect(memoryStore.set()).to.be.instanceof(Promise);
+  describe('set(key, data)', () => {
+    it('should return a Promise', () => {
+      expect(memoryStore.set()).toBeInstanceOf(Promise);
     });
 
-    it('should return null when undefined key is given');
+    it.skip('should return null when undefined key is given', () => {});
 
-    it('should return expected value when existing key is given');
+    it.skip('should return expected value when existing key is given', () => {});
   });
 });

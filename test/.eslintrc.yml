@@ -1,5 +1,2 @@
 env:
-  mocha: true
-
-rules:
-  no-empty: off
+  jest: true
