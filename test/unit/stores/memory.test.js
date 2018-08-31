@@ -1,6 +1,6 @@
 'use strict';
 
-const { MemoryStore } = require('../');
+const { MemoryStore } = require('../../../');
 
 
 describe('MemoryStore', () => {

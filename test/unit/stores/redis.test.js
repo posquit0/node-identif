@@ -1,7 +1,8 @@
 'use strict';
 
 const Redis = require('ioredis');
-const { RedisStore } = require('../');
+const { RedisStore } = require('../../../');
+const { sleep } = require('../../utils');
 
 
 describe('RedisStore', () => {
@@ -12,6 +13,7 @@ describe('RedisStore', () => {
   });
 
   afterEach(async () => {
+    await redisStore.store.flushall();
     await redisStore.store.quit();
   });
 
@@ -43,12 +45,13 @@ describe('RedisStore', () => {
       }
     });
 
-    it('should expire the value after ttl', async () => {
+    it('should expire the item after ttl', async () => {
+      const ttl = 1;
+
       for (let i = 0; i < 3; i++) {
         const randomKey = '' + Math.random();
-        await redisStore.set(randomKey, i, 1);
-        const till = new Date(new Date().getTime() + 1010);
-        while (till > new Date()) {}
+        await redisStore.set(randomKey, i, ttl);
+        await sleep(ttl * 1010);
         expect(await redisStore.get(randomKey)).toEqual(null);
       }
     });
@@ -59,12 +62,12 @@ describe('RedisStore', () => {
       expect(redisStore.set()).toBeInstanceOf(Promise);
     });
 
-    it('should return always null', async () => {
-      expect(await redisStore.set()).toBeNull();
+    it('should return always self instance', async () => {
+      expect(await redisStore.set()).toEqual(redisStore);
       for (let i = 0; i < 10; i++) {
         const randomKey = '' + Math.random();
         const data = await redisStore.set(randomKey, Math.random());
-        expect(data).toBeNull();
+        expect(data).toEqual(redisStore);
       }
     });
   });

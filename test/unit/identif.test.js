@@ -1,6 +1,6 @@
 'use strict';
 
-const { Identif, MemoryStore, RedisStore } = require('../');
+const { Identif, MemoryStore, RedisStore } = require('../../');
 
 
 describe('Identif(MemoryStore)', function () {
