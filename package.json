@@ -1,6 +1,6 @@
 {
   "name": "identif",
-  "version": "0.4.27",
+  "version": "0.4.28",
   "description": "Helper functions to verify one's identity via personal channels(SMS, Phone, E-Mail and more!)",
   "license": "MIT",
   "author": {
