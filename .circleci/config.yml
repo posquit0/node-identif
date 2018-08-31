@@ -5,6 +5,7 @@ jobs:
     docker:
       # Primary container
       - image: circleci/node:8.11.3
+      - image: redis:4
     steps:
       - checkout
       - restore_cache:
