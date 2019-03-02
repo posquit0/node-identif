@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
-    "eslint": "^5.5.0",
+    "eslint": "^5.15.0",
     "eslint-config-kasa": "^0.4.0",
     "jest": "^23.5.0",
     "jest-junit": "^5.1.0"
