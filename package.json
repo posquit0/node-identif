@@ -53,7 +53,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.1.0",
     "eslint": "^5.5.0",
     "eslint-config-kasa": "^0.4.0",
     "jest": "^23.5.0",
